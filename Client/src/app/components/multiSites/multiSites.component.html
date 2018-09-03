@@ -1,0 +1,27 @@
+
+
+<body width="100%" style="background: rgb(228, 224, 224);padding-top: 40px;">
+  <h1 align="center" id="title"> {{title}}</h1>
+
+  <br><br>
+  
+  <hr style="border-color:grey;border-width: 2px;">
+ 
+  <div *ngFor="let d of listOfSites; let i = index" class="myDiv" ng-app="app" id="listOfSites">
+     
+      <div  class="content" align="right" ng-controller="ctrl">
+         
+              
+              <img  on-click="redirect(d.id)" src="{{d.images.substr(0,d.images.indexOf(';'))}}">
+          
+          
+              <h3 on-click="redirect(d.id)">{{d.id}}</h3>
+          
+          <p on-click="redirect(d.id)" >{{d.info.substr(0,300)}}</p>
+            <div id="row{{i+1}}" ><br> </div>
+      </div>
+    
+        
+  </div> 
+ <br>
+</body>

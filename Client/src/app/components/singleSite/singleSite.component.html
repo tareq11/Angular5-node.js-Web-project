@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>iTour</title>
+
+</head>
+
+<body width="100%" style="background: rgb(228, 224, 224);padding-top: 20px;">
+ 
+    
+
+  <!-- Overlay effect when opening sidebar on small screens -->
+  <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+  
+  <!-- !PAGE CONTENT! -->
+  <div class="w3-main " style="margin-left:160px;margin-right:60px">
+  
+   
+    <div class="w3-hide-large" style="margin-top:80px"></div>
+  
+   
+    <div align="right" class="w3-container" id="apartment">
+   
+        <h2 class="w3-text-green" id="siteName" >{{selectedSiteData.id}}</h2>
+        <br><br>
+        <div *ngFor="let img of images"  class="w3-container" id="apartment" style="width: 60%;">
+            <div class="w3-display-container mySlides" style="display: none;">
+                <img src="{{img}}" style="width:100%;">
+            </div>
+        
+        </div>
+        <div  class="w3-row-padding w3-section" style="width: 60%;">
+            <div  *ngFor="let img of images ; let i = index"  class= "w3-col s3">
+				<img class="demo w3-opacity w3-hover-opacity-off" src="{{img}}"  style="width:100%;cursor:pointer" (click)="currentDiv(i+1)" >
+			</div>
+			
+        </div>
+        <div align="right" class="w3-container">
+            <br ><br>
+            <hr>
+  
+            <h4><strong>סוג אתר</strong></h4>
+            <div align="right" id="siteType">
+              <p>{{selectedSiteData.nature_type}} </p>
+            </div>
+            <hr>
+            <h4><strong>:מאפיינים</strong></h4>
+            <div class="w3-row w3-large">
+                <div class="w3-col s6">
+                 
+                </div>
+                <div class="w3-col s6">
+                  
+                </div>
+            </div>
+  
+  
+            <div class="w3-row w3-large">
+  
+            </div>
+            
+            
+  
+           
+            <div id="openingTimeDiv" align="right">
+                
+            </div>
+            <hr>
+  
+            <h4><strong>דירוג האתר</strong></h4>
+            <div align="right" >
+                <div class="rated" >
+                    
+                </div>
+            </div>
+  
+  
+            <hr>
+  
+            <h4><strong>מידע על האתר</strong></h4>
+            <p id="info">{{selectedSiteData.info}}</p>
+            <hr>
+  
+            <h4><strong>? איך מגיעים </strong></h4>
+            <p id="arrive">{{selectedSiteData.arrive}}</p>
+  
+  
+  
+            <hr>
+            <h4><strong>מפת האיזור</strong></h4>
+            <br>
+           
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIJfsgADx-kbm4hV59WuaY2gk6XwNX0Nyo89vKveOPM0gsMBZtBw" on-click="redirectToMap()"  width="200" height="200" >
+            <hr>
+  
+            <h4>הוסף חוות דעת</h4>
+            <form method="POST" style="text-align:right">
+  
+                שם <br>
+                <input type="text" id="realName" required><br>
+                <br>
+  
+                חוות דעת <br>
+                <textarea style="text-align:right" id="commenttxt" rows="5" cols="40" required></textarea><br><br>
+                חוות דעת שלך <br>
+                <div align="right" class="col-lg-12">
+                    <div class="star-rating">
+                        <span on-click='star(1)' id="star1" class="fa fa-star-o" style="color: blue;" data-rating="1"></span>
+                        <span on-click='star(2)' id="star2" class="fa fa-star-o" style="color: blue;" data-rating="2"></span>
+                        <span on-click='star(3)' id="star3" class="fa fa-star-o" style="color: blue;" data-rating="3"></span>
+                        <span on-click='star(4)' id="star4" class="fa fa-star-o" style="color: blue;" data-rating="4"></span>
+                        <span on-click='star(5)' id="star5" class="fa fa-star-o" style="color: blue;" data-rating="5"></span>
+                        <input type="hidden" name="starRating" class="rating-value">
+  
+                    </div>
+                </div>
+                <br>
+                <input type="button" name="addComment" on-click="addCommentFunction()" align="right" style="margin-right:20px;" value="שלח">
+            </form>
+  
+               
+          
+            <hr>
+  
+            <h4><strong>:חוות דעת</strong></h4>
+  
+            <div class="comm" style="width:60%">
+  
+            </div>
+           
+          
+        </div>
+    <footer class="w3-container w3-padding-16" style="margin-top:32px"> <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green"></a></footer>
+  
+  <!-- End page content -->
+  </div>
+  
+  
+  
+  
+    
+  <br><br>
+  </div>
+
+  
+  <script>
+    var $star_rating = $('.star-rating .fa');
+    
+    var SetRatingStar = function() {
+      return $star_rating.each(function() {
+        if (parseInt($star_rating.siblings('input.rating-value').val()) >= parseInt($(this).data('rating'))) {
+          return $(this).removeClass('fa-star-o').addClass('fa-star');
+        } else {
+          return $(this).removeClass('fa-star').addClass('fa-star-o');
+        }
+      });
+    };
+    
+    $star_rating.on('click', function() {
+      $star_rating.siblings('input.rating-value').val($(this).data('rating'));
+      return SetRatingStar();
+    });
+    
+    SetRatingStar();
+    $(document).ready(function() {
+    
+    });
+    
+    </script>
+    
+  </body>
+  </html>
+
+  

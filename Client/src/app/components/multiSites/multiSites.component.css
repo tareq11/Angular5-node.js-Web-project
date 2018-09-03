@@ -1,0 +1,23 @@
+
+ .content {
+   
+    text-align:right;   
+    border: 1px solid gray;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.content p h3{
+    text-align:right;
+     
+}
+.content img {
+    padding: 5px;
+    width:180px;
+    float: right;
+}
+a:link {
+    color: green;
+    text-decoration: none;
+}
+ 

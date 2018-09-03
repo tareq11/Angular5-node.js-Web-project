@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>iTour</title>
+<link rel="icon" type="image/x-icon" href="http://pngimg.com/uploads/firefox/firefox_PNG18.png">
+<script src="script.js"></script>
+</head>
+<div  align='center' style="background:#c5e5c8;">
+    <ul class="nav" style="padding-left: 37%;padding-right: 37%;color: black" >
+        <li class="nav-item" align='center'>
+                <button align="center" id='sitesInSouth' (click)="redirectToMultiSites('דרום')" class="w3-bar-item w3-button">אתרים בדרום </button>
+            </li>
+        <li class="nav-item">
+                <button align="center" id='sitesInCenter' (click)="redirectToMultiSites('מרכז')" style="border-left: solid 1px black ; border-right: solid 1px black" class="w3-bar-item w3-button">אתרים במרכז</button>
+            </li>
+        <li class="nav-item">
+                <button align="center" id='sitesInNorth' (click)="redirectToMultiSites('צפון')" class="w3-bar-item w3-button">אתרים בצפון</button>
+            </li>
+      </ul>
+    </div>
+<body width="100%" style="background-color: #E6E6E6">
+
+        <!-- Header -->
+      <header class="w3-display-container w3-content w3-center" style="max-width:1500px">
+            
+
+              
+              <div align="center"   style="font-size:2px;margin-left:80px;padding-top: 10px">
+                    <h1 style="color: teal">שמורות טבע , גנים לאומיים , מסלולי טיולים בארץ </h1>
+                    <br>
+                </div>
+      </header>
+      <br><br>
+      
+    
+    <form method="post" id="form" align="right" style="border: 5px solid rgb(177, 167, 167);  width: 250px; height: 1000px; float:right;margin-right:20px; ">
+        <label for="serach">:חיפוש</label>
+        <br>
+        <input type='text' list='dataList' data-key='se' ng-model="inputVal" id='search-input' style= "width:100%">
+        <datalist id="dataList">
+            <option  *ngFor="let data of allSitesDetails">{{data.id}}</option>   
+        </datalist>
+
+        <br>
+        <br>
+    <input type="button" id="search-btn" (click)="searchFunction()" align="right" style= "margin-right:20px; color:blue;width:100%" value="חפש">
+    
+  <hr>
+ 
+  <header class="card-header">
+    <h6 class="title">מאפיינים </h6>
+</header>
+  <div class="card-body">
+			
+    <label class="form-check">
+      
+      <span class="form-check-label" style="padding-right: 25px; " >
+          מתאים למשפחה  
+      </span>
+        <input class="form-check-input" type="checkbox" id="family" style="float: right;">
+    </label> <!-- form-check.// -->
+    <label class="form-check">
+      
+        <span class="form-check-label" style="padding-right: 25px; ">
+            שחייה
+        </span><input class="form-check-input" type="checkbox" id="swimming" style="float: right;">
+    </label>  <!-- form-check.// -->
+    <label class="form-check">
+      
+        <span class="form-check-label" style="padding-right: 25px; ">
+            חינמי
+        </span><input class="form-check-input" type="checkbox" id="free" style="float: right;">
+    </label> 
+    <label class="form-check">
+        
+        <span class="form-check-label" style="padding-right: 25px; ">
+            מותר על האש
+        </span><input class="form-check-input" type="checkbox" id="fire" style="float: right;">
+    </label>
+    <label class="form-check">
+        
+        <span class="form-check-label" style="padding-right: 25px; ">
+            מסלול הליכה
+        </span><input class="form-check-input" type="checkbox" id="walking" style="float: right;">
+    </label>
+    <label class="form-check">
+        
+        <span class="form-check-label" style="padding-right: 25px; ">
+            מתאים לאופניים
+        </span><input class="form-check-input" type="checkbox" id="bysicle" style="float: right;">
+    </label>
+    <label class="form-check">
+        
+        <span class="form-check-label" style="padding-right: 25px; ">
+            מתאים לנכים
+        </span><input class="form-check-input" type="checkbox" id="wheelchair" style="float: right;">
+    </label>
+
+    </div>
+
+
+    <header class="card-header">
+        <h6 class="title">אזור </h6>
+    </header>
+    <div class="filter-content">
+        <div class="card-body" id="areaGroup">
+            <label class="form-check" >
+
+                <span align="right" class="form-check-label" style="padding-right: 25px;">
+                    הכל
+                </span><input class="form-check-input" id="allZones" type="radio" name="areaZone" value="הכל" checked="checked"  style="float: right;">
+            </label>
+        <label class="form-check">
+          
+          <span align="right" class="form-check-label" style="padding-right: 25px;">
+            צפון
+          </span><input class="form-check-input" type="radio" name="areaZone" value="צפון"  style="float: right;">
+        </label>
+        <label class="form-check">
+          
+          <span class="form-check-label" style="padding-right: 25px;">
+            מרכז
+          </span><input class="form-check-input" type="radio" name="areaZone" value="מרכז"  style="float: right;">
+        </label>
+        <label class="form-check">
+          
+          <span class="form-check-label" style="padding-right: 25px;">
+            דרום
+          </span><input class="form-check-input" type="radio" name="areaZone" value="דרום"  style="float: right;">
+        </label>
+        </div> <!-- card-body.// -->
+    </div>
+
+<div class="filter-content">
+    
+</div>
+<header class="card-header">
+        <h6 class="title">סוגי טבע </h6>
+    </header>
+    <div class="filter-content">
+        <div class="card-body">
+            <div class="custom-control custom-checkbox">
+                
+                <label class="form-check">
+
+                    <span class="form-check-label" style="padding-right: 25px; ">
+                        מים
+                    </span>
+                    <input class="form-check-input" type="checkbox" id="water" style="float: right;">
+                </label> <!-- form-check.// -->
+                <label class="form-check">
+
+                    <span class="form-check-label" style="padding-right: 25px; ">
+                        נחל
+                    </span><input class="form-check-input" type="checkbox" id="river" style="float: right;">
+                </label>  <!-- form-check.// -->
+                <label class="form-check">
+
+                    <span class="form-check-label" style="padding-right: 25px; ">
+                        אגם
+                    </span><input class="form-check-input" type="checkbox" id="lake" style="float: right;">
+                </label>
+                <label class="form-check">
+
+                    <span class="form-check-label" style="padding-right: 25px; ">
+                        פארק
+                    </span><input class="form-check-input" type="checkbox" id="park" style="float: right;">
+                </label>
+                <label class="form-check">
+
+                    <span class="form-check-label" style="padding-right: 25px; ">
+                        נקודת חן בטבע
+                    </span><input class="form-check-input" type="checkbox" id="graceNature" style="float: right;">
+                </label>
+            </div>  
+        </div> <!-- card-body.// -->
+    </div><input type="button" id="sort-btn" align="right" (click)="sort()" style="margin-right:20px;width:100%;color:blue" value="סנן">
+
+
+    </form>
+  
+<div style="float: left; padding-left:20px;width:1000px" >
+    <p on-click="redirect('זוויתן תחתון ובריכת המשושים')" align="right" style="font-size: 20px"><b>זוויתן תחתון ובריכת המשושים</b></p>
+    
+     <img on-click="redirect('זוויתן תחתון ובריכת המשושים')"  bind-src="zvitanImg" width="1000" height="500"  >
+   
+   <div  align="right" style="padding-left:20px;padding-top: 30px">
+     
+       <p on-click="redirect('זוויתן תחתון ובריכת המשושים')" >נחל משושים (נַחַל מְשֻׁשִּׁים) הוא הנחל הארוך ביותר ברמת הגולן. במרכז הנחל, לסלעי הגדות צורות גאולוגיות של משושים הנראות ביתר שאת בברכת המשושים בה לכל קירות הבריכה, ולסלעים המקיפים אותה, צורת משושה, שנתנה לנחל את שמו..</p>
+   </div>
+ </div>
+ 
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>  <br><br><br><br><br><br>
+
+
+<div style="float: left; padding-left:20px;width:1000px;" >
+    <p on-click="redirect('גן לאומי גן השלושה - הסחנה')" align="right" style="font-size: 20px"><b>גן לאומי גן השלושה - הסחנה</b></p>
+    
+     <img on-click="redirect('גן לאומי גן השלושה - הסחנה')" bind-src="sakhnehImg" width="1000" height="500" >
+   
+   <div  align="right" style="padding-left:20px;padding-top: 30px">
+    
+     <p on-click="redirect('גן לאומי גן השלושה - הסחנה')" > השלושה (הסחנה)
+ההסטוריה, המורשת, הטבע
+פארק מים מפורסם במערב עמק המעיינות (עמק בית שאן). ייחודו של גן השלושה במעיינותיו החמימים ובבריכות הרחצה הטבעיות שבו. בתחומו יש גם מוזיאון ארכיאולוגי ושחזור אתר ההתיישבות ההיסטורי של קיבוץ תל עמל, שעלה על הקרקע ופתח את תקופת יישובי חומה ומגדל..</p>
+   </div>
+ </div>
+
+ <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>  <br><br><br><br><br><br>
+
+  <!-- <div class="w3-third w3-container w3-margin-bottom"> -->
+ <div style="float: left; padding-left:20px;width:1000px;;padding-top: 30px">
+    <p on-click="redirect('יער שוויץ')" align="right" style="font-size: 20px" ><b>יער שוויץ</b></p>
+
+    
+     <img on-click="redirect('יער שוויץ')" bind-src="switzerlandImg" width="1000" height="500" >
+    
+   <!-- <div align="right" class="w3-container w3-margin-bottom w3-white" > -->
+ <div  align="right" style="padding-left:20px">
+     <p on-click="redirect('יער שוויץ')" >ער שווייץ מכסה את המדרון התלול היורד מרמת פוריה לטבריה ולכנרת. שיאי המתלול מתנשאים לגובה של יותר מ-400 מטר מעל לכנרת, דבר המבטיח למטיילים נופים מרהיבים לעבר האגם, הגולן, החרמון והרי הגליל. העיר טבריה, הממוקמת למרגלותיו הצפוניים של היער, נראית כמו על כף היד ממש</p>
+   </div>
+ </div>
+ <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>  <br><br><br><br><br><br>
+ <!-- End page content -->
+
+   
+  
+ <div align="right" class="w3-light-grey w3-padding-large w3-padding-32 w3-margin-top" id="contact">
+
+    <h3 class="w3-center">Contact</h3>
+    <hr>
+    <p style= "margin-right:20px;">,שלום רב<br>
+<p style= "margin-right:20px;">.אנו מודים לך על בחירתך לגלוש באתר שלנו להתאהב בארץ מחדש</p>
+<p style= "margin-right:20px;">.נשמח לקבל את פנייתך - שאלות, הארות, הערות וכל נושא שבא לך להפנות אלינו</p>
+<p style= "margin-right:20px;">לידיעתך - אנו מתחייבים לשמור אצלנו את פרטי ההתקשרות הנמסרים לנו בעת ההרשמה, כולל כתובת דואר </p>
+<p style= "margin-right:20px;">אלקטרוני, לא להעבירם לשום גורם אחר ולא לעשות בהם שימוש למעט לצורך משלוח מידע ו/או עדכונים ואו חומר </p>
+<p style= "margin-right:20px;">.פרסומי בדבר השרותים והמוצרים השונים אותם אנו מספקים</p>
+<p style= "margin-right:20px;">בכל עת נאפשר לך להודיע לנו על רצונך בהסרה מרשימות התפוצה שלנו ואנו נעשה כרצונך </p>
+<p style= "margin-right:20px;">כמו כן - אם אינך מעוניין/ת לקבל את המידע מאיתנו תוכל/י להודיע לנו על כך בדואר אלקטרוני לכתובת</p>
+
+      <form target="_blank" style="margin-right:20px;">
+          <div class="w3-section">
+              <label>שם</label>
+              <input class="w3-input w3-border" type="text" required id="username">
+          </div>
+          <div class="w3-section">
+              <label>דואר אלקטרוני</label>
+              <input class="w3-input w3-border" type="text" required name="email">
+          </div>
+          <div class="w3-section">
+              <label>הודעה</label>
+              <input class="w3-input w3-border" required id="message">
+          </div>
+          <button (click)="sendMail()" class="w3-button w3-block w3-dark-grey">שלח</button>
+
+
+          <br>
+          <img bind-src="icon" width="100" height="70" style="margin-right:54%;margin-left:46%;">
+          
+      </form>
+  </div>
+  
+</body>
+</html>
