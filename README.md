@@ -16,4 +16,4 @@ singleSite: view each site separately, display site images, its properties, expl
 The project is divided into two  files Client and  Server
 Server :whose contains Node.js files ,execute connect to the database and run queries to the database.
 client: side that contains the Angular files with all the departments. 
-The requests between the parties are made by a Http protocol
+The requests between the parties are made by a Http protocol.
