@@ -1,9 +1,10 @@
 # Angular5-node.js-Web-project
 
--Both Pages are multiSites and singleSite, the site runs on Node.js on localHost and the connection to the database in mySql with tables:
+Both Pages are multiSites and singleSite, the site runs on Node.js on localHost and the connection to the database in mySql with tables:
 *itour_feedback.sql
 *itour_properties.sql
 *itour_sites.sql
+
 multiSites: A screen displays a list of sites with an image and ranking and explanation for each site, after filtering,
 Arrive at this screen, or when filtering out navBar by regions,Or when you filter from the zone bar.
 singleSite: view each site separately, display site images, its properties, explanation, rating and reviews, and a link to a google map that allows navigation to reach the site, and also allows to add rating and opinions.
